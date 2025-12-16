@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+.codeium/
 
 # Distribution / packaging
 .Python
@@ -23,6 +24,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.cursor-server
+.vscode-server
+.windsurf-server
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
