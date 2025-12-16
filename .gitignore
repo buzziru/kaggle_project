@@ -1,0 +1,96 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+#-*- VIM -*-
+# swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Data files
+*.csv
+*.json
+*.parquet
+*.zip
+*.tar.gz
+data/
+*.db
+*.sqlite3
+*.txt
+*.joblib
+*.pkl
+*.pickle
+data/
+
+# Model files
+*.pt
+*.pth
+*.h5
+*.onnx
+*.pkl
+*.pickle
+models/
+model/
+
+# Submission files
+submission/
+submissions/
+*.submission.csv
+
+# Lightning AI specific files
+.lightning/
+lightning_logs/
+.lightning_studio/
+streamlit_templates/
+gradio_templates/
+
+# IDE settings
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+#kaggle
+.kaggle/

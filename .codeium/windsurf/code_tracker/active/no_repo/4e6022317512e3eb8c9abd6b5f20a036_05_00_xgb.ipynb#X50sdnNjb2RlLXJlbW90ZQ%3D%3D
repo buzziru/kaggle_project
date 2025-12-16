@@ -1,0 +1,3 @@
+Þ!chmod 600 /teamspace/studios/this_studio/.kaggle/kaggle.json
+!kaggle competitions submit -c competitive-data-science-predict-future-sales -f "./data/submission_xgb_test.csv" -m "submission_xgb_v1_with_feature_engineering"Á ÁÄÄÝ
+ÝÞ 2ªvscode-notebook-cell://ssh-remote+s_01k9vnjfah40we5n7bf7t0ybs6@ssh.lightning.ai/teamspace/studios/this_studio/PredictingSales/05_00_xgb.ipynb#X50sdnNjb2RlLXJlbW90ZQ%3D%3D
