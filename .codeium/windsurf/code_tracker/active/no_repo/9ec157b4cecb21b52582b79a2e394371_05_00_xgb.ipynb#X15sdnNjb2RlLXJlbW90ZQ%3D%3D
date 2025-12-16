@@ -1,136 +1,0 @@
-Ó%%time
-drop_cols = ['item_cnt_month', 'item_avg_date_sales_lag_1', 'item_category_avg_date_sales_lag_2', 'item_cnt_month_diff_1', 'item_cnt_month_diff_2', \
-    'rolling_3m_item_std', 'rolling_3m_cnt_std'] # 
-val_month = 33
-
-train_mask = all_data['date_block_num'] < val_month
-x_train = all_data.loc[train_mask].drop(drop_cols, axis=1)
-
-val_mask = all_data['date_block_num'] == val_month
-x_val = all_data.loc[val_mask].drop(drop_cols, axis=1)
-
-y_train = all_data.loc[train_mask, 'item_cnt_month'].clip(0, 20)
-y_val = all_data.loc[val_mask, 'item_cnt_month'].clip(0, 20)
-
-test_mask = all_data['date_block_num'] == 34
-x_test = all_data.loc[test_mask].drop(drop_cols, axis=1)
-
-print(f'í•™ìŠµë°ì´í„° : {x_train.shape}')
-
-cat_features = ['shop_id', 'item_category_id', 'city', \
-    'type_code', 'platform', 'month', 'meta', ] #  
-
-# best_params = {
-#     'objective': 'reg:squarederror',
-#     'eval_metric': 'rmse',
-#     'random_state': 42,
-#     'eta': 0.01,
-#     'colsample_bytree' : 0.7, # 0.6618
-#     'subsample': 0.8, # 0.6289
-#     'alpha': 0.1, 
-#     'lambda': 1.0, 
-#     'min_child_weight' : 1, # 30 - 5 
-#     'gamma': 0.0,
-#     'max_depth' : 10, # 8
-#     'device': 'cuda',
-#     'tree_method': 'hist',
-# }
-
-best_params = {
-    'objective': 'count:poisson',
-    'eval_metric': 'rmse',
-    'random_state': 42,
-    'max_delta_step': 0.7,
-    'eta': 0.01,
-    'colsample_bytree' : 0.7, # 0.6618
-    'subsample': 0.7, # 0.6289 - 0.8
-    'alpha': 0.5, # 0.1 - 
-    'lambda': 1.0, 
-    'min_child_weight' : 3, # 30 - 5 
-    'gamma': 0.0,
-    'max_depth' : 10, # 8
-    'device': 'cuda',
-    'tree_method': 'hist',
-}
-
-# best_params = {
-#     'objective': 'reg:tweedie',
-#     'tweedie_variance_power': 1.1, # 1.0654
-#     'eval_metric': 'rmse',
-#     'random_state': 42,
-#     'eta': 0.01,
-#     'colsample_bytree' : 0.6618, # 0.6618
-#     'subsample': 0.6289, # 0.6289
-#     'alpha': 0.1, 
-#     'lambda': 1.0, 
-#     'min_child_weight' : 30, # 20
-#     'gamma': 0.1,
-#     'max_depth' : 8,
-#     'device': 'cuda',
-#     'tree_method': 'hist',
-# }
-
-
-dtrain_xgb = xgb.DMatrix(x_train, y_train, enable_categorical=True)
-dval_xgb = xgb.DMatrix(x_val, y_val, enable_categorical=True)
-dtest_xgb = xgb.DMatrix(x_test, enable_categorical=True)
-
-evals = [(dtrain_xgb, 'train'), (dval_xgb, 'eval')]
-evals_result = {}
-
-xgb_model = xgb.train(
-    params=best_params,
-    dtrain=dtrain_xgb,
-    num_boost_round=10000,
-    evals=evals,
-    verbose_eval=100,
-    early_stopping_rounds=300,
-    evals_result=evals_result
-)º º»
-»½ ½¿
-¿Ï ÏÑ
-Ñö öø
-ø“ “•
-•­ ­¯
-¯À ÀÂ
-ÂÝ ÝÞ
-Þé éë
-ëþ þÿ
-ÿŠ Š‹
-‹ 
-Ÿ Ÿ¡
-¡µ µ¶
-¶º º»
-»Ð ÐÑ
-ÑÕ 
-ÕÜ 
-ÜÝ Ýß
-ßî îï
-ïñ ñò
-òö ö÷
-÷…	 …	‡	
-‡	ˆ	 ˆ	Œ	
-Œ		 	Ž	
-Ž	’	 ’	“	
-“	¥	 ¥	¦	
-¦	ª	 ª	«	
-«	¿	 
-¿	Ä	 
-Ä	Ç	 
-Ç	é	 é	î	
-î	ï	 ï	ö	
-ö	°
- 
-°
-Ë
- 
-Ë
-’ ’“
-“ 
-£ 
-£³ ³´
-´¶ ¶¾
-¾ì ìí
-í× 
-×Ù 
-ÙÓ 2ªvscode-notebook-cell://ssh-remote+s_01k9vnjfah40we5n7bf7t0ybs6@ssh.lightning.ai/teamspace/studios/this_studio/PredictingSales/05_00_xgb.ipynb#X15sdnNjb2RlLXJlbW90ZQ%3D%3D
