@@ -68,7 +68,7 @@ Kaggle의 [Predict Future Sales](https://www.kaggle.com/c/competitive-data-scien
 
 ```
 .
-├── data/                   # Dataset
+├── experiments/            # notebook files
 ├── 04_00_PREP.ipynb        # Data Preprocessing & Feature Engineering
 ├── 05_00_lgbm.ipynb        # Modeling, Tuning, Analysis
 └── README.md               # Project Report

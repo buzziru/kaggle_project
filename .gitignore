@@ -60,7 +60,6 @@ ENV/
 data/
 *.db
 *.sqlite3
-*.txt
 *.joblib
 *.pkl
 *.pickle
